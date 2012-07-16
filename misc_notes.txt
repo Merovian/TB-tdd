@@ -55,3 +55,5 @@ Seem slow? Of course.
 Try gem 'spork' - which loads an instance of rails that stays booted, instead of booting over and over
 but what if you change config?
 try gem 'guard' -- it watches files that change (in say, /config) and take action (like reboot spork)
+
+set up some rspec for controllers
