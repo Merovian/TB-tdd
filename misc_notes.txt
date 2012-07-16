@@ -21,6 +21,12 @@ Shoulda Matchers
 WebMock
 ^^^^^^^^^^^^^^^^
 
+Others:
+----------------
+high_voltage - allows you to add static content routes without controllers.
+
+
+
 Interesting quotes:
 "Don't open your webbrowser" -- decouple the idea of a web page from the grapical layer
 
@@ -32,3 +38,14 @@ gem 'cucumber-rails' gives you capybara
 
 install cucumber with rails g cucumber:install
 
+will require gem 'database_cleaner'
+
+if cucumber javascript error, gemfile 
+gem 'therubyracer', require: 'v8'
+
+
+
+
+Feature files are named
+they have Scenarios
+scenarios are laid out "Given" (setup) "When" (I do X) "Then" (a result)
