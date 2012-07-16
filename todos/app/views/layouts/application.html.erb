@@ -12,6 +12,8 @@
 	<%= current_email %>
 </p>	
 
+<%= link_to 'Sign out', session_path, method: :delete %>
+
 <%= yield %>
 
 </body>
