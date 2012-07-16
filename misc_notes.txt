@@ -49,3 +49,9 @@ gem 'therubyracer', require: 'v8'
 Feature files are named
 they have Scenarios
 scenarios are laid out "Given" (setup) "When" (I do X) "Then" (a result)
+
+
+Seem slow? Of course.
+Try gem 'spork' - which loads an instance of rails that stays booted, instead of booting over and over
+but what if you change config?
+try gem 'guard' -- it watches files that change (in say, /config) and take action (like reboot spork)
