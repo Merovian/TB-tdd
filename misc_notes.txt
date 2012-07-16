@@ -1,0 +1,34 @@
+Environment:
+----------------
+Ruby 1.9.3
+Rails 3.2
+^^^^^^^^^^^^^^^^
+
+
+Primary Tools:
+----------------
+cucumber (integration)
+rspec (unit)
+^^^^^^^^^^^^^^^^
+
+
+Secondary Tools:
+----------------
+Capybara
+FactoryGirl
+Timecop
+Shoulda Matchers
+WebMock
+^^^^^^^^^^^^^^^^
+
+Interesting quotes:
+"Don't open your webbrowser" -- decouple the idea of a web page from the grapical layer
+
+github joschuaclayton/todos/20120716
+
+
+gemfile
+gem 'cucumber-rails' gives you capybara
+
+install cucumber with rails g cucumber:install
+
