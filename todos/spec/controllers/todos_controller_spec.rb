@@ -11,9 +11,15 @@ describe TodosController, '#index' do
 		before do
 			controller.current_email  = 'john@example.com'
 		end
+
 		it 'responds successfully' do
 			get :index
 			should respond_with(:success)
+		end
+		
+		it 'assigns @todos' do
+			get :index
+			should assign_to(:todos)
 		end
 	end
 end
