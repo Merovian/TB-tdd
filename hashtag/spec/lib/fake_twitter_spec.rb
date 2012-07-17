@@ -9,6 +9,13 @@ describe FakeTwitter do
 			results.map(&:text).should == ['cool yo', 'sweet bud']
 		end
 
+		it 'handles keys that are symbols' do
+			fake_twitter = FakeTwitter.new('#awesome', [{text: 'cool yo'}, {text: 'sweet bud'}])
+			results = fake_twitter.search('#awesome')
+			results.map(&:text).should == ['cool yo', 'sweet bud']
+		end
+
+
 		it "returns and empty array if the term isn't found" do
 			fake_twitter = FakeTwitter.new('#awesome', [{'text' => 'cool yo'}, {'text' => 'sweet bud'}])
 			results = fake_twitter.search('')
