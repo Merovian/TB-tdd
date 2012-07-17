@@ -7,6 +7,7 @@ gem 'rails', '3.2.6'
 
 gem 'sqlite3'
 
+gem 'twitter', '~> 2.5.0'
 
 group :development, :test do
 	gem 'rspec-rails'
@@ -16,6 +17,8 @@ group :test do
 	gem 'spork'
 	gem 'cucumber-rails', require: false
 	gem 'database_cleaner'
+	gem 'shoulda-matchers'
+	gem 'bourne'
 end
 
 group :development do

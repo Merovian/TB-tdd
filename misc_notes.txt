@@ -45,24 +45,18 @@ gem 'therubyracer', require: 'v8'
 
 
 
+Testing
+1. setup
+2. exercise
+3. verify
+4. teardown
 
-Feature files are named
-they have Scenarios
-scenarios are laid out "Given" (setup) "When" (I do X) "Then" (a result)
-
-
-Seem slow? Of course.
-Try gem 'spork' - which loads an instance of rails that stays booted, instead of booting over and over
-but what if you change config?
-try gem 'guard' -- it watches files that change (in say, /config) and take action (like reboot spork)
-
-
-
-set up some rspec for controllers
-
-
+///////////////////
+STEP BY STEP STUFF
+-------------------
 
 SET UP
+delete public/index.html
 gemfile:
 
 group :development, :test do
@@ -73,6 +67,9 @@ group :test do
 	gem 'spork'
 	gem 'cucumber-rails', require: false
 	gem 'database_cleaner'
+	#gem 'capybara'
+	#gem 'shoulda-matchers'
+	#gem 'bourne' #for spying
 end
 
 group :development do
@@ -96,10 +93,11 @@ add to prefork "require 'capybara/rspec'"
 open spec/spec_helper.rb -- kill comments and move all to prefork
 Line starts "Dir[Rails.root.join...." moves to each_run
 
-open Gemfile
-in :test add
-gem 'capybara', require: false
-
 open config/cucumber.yml -- line 4 ADD "--drb"  before "--strict"
 
 open /.rspec  and add "--drb" to the end of the first line.
+
+set up spying
+---------------
+for mocha, open spec/spec_helper
+config.mock_with :mocha
