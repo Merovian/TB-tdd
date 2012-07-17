@@ -1,3 +1,4 @@
+@javascript
 Feature: Search
   In order to information that is interesting to me
   As a user

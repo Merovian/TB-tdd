@@ -1,8 +1,13 @@
-<ul data-role='search-results'>
+<div id="content">
+</div>
+
+<script id='page-content' type='text/template'>
+var foo = "<ul data-role='search-results'>
 	<% @tweets.each do |tweet| %>
 		<li>
 			<%= tweet.text %>
 			<%= tweet.from_user %>
 		</li>
 	<% end %>
-</ul>
+</ul>";
+</script>
