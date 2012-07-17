@@ -56,4 +56,50 @@ Try gem 'spork' - which loads an instance of rails that stays booted, instead of
 but what if you change config?
 try gem 'guard' -- it watches files that change (in say, /config) and take action (like reboot spork)
 
+
+
 set up some rspec for controllers
+
+
+
+SET UP
+gemfile:
+
+group :development, :test do
+	gem 'rspec-rails'
+end
+
+group :test do
+	gem 'spork'
+	gem 'cucumber-rails', require: false
+	gem 'database_cleaner'
+end
+
+group :development do
+	gem 'guard-spork'
+end
+
+Console
+guard init spork
+rails g cucumber:install
+rails g rspec:install
+
+open features/support/env.rb -- delete all comments
+open spc/spec_helper.rb -- delete all comments
+
+spork rspec --bootstrap
+spork cucumber --bootstrap
+
+open features/support/env.rb -- move all original lines to prefork
+add to prefork "require 'capybara/rspec'"
+
+open spec/spec_helper.rb -- kill comments and move all to prefork
+Line starts "Dir[Rails.root.join...." moves to each_run
+
+open Gemfile
+in :test add
+gem 'capybara', require: false
+
+open config/cucumber.yml -- line 4 ADD "--drb"  before "--strict"
+
+open /.rspec  and add "--drb" to the end of the first line.
