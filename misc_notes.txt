@@ -101,3 +101,22 @@ set up spying
 ---------------
 for mocha, open spec/spec_helper
 config.mock_with :mocha
+
+
+
+
+
+
+
+JAVASCRIPT 
+-------------------
+Use jasmine
+^^^^^^^^^^^^^^^^^^^
+
+group :test do
+ gem 'evergreen'
+end
+
+command line 
+evergreen serve
+
