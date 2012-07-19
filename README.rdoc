@@ -71,11 +71,13 @@ SET UP
 
 7. set up your spork
 
-   * open features/support/env.rb -- delete all comments and split your directives between prefork and each_run.
-     You essentially move everything to prefork, except the line that starts "Dir[Rails.root.join...." that moves to each_run.
+   * open features/support/env.rb -- delete all comments and move all original lines to the prefork block.
      Then add to prefork: 
         require 'capybara/rspec'
 
+   * open spec/spec_helper.rb and split your directives between prefork and each_run.
+     You essentially move everything to prefork, except the line that starts "Dir[Rails.root.join...." that moves to each_run.
+     
      Here is the env.rb file:
         require 'rubygems'
         require 'spork'
