@@ -1,0 +1,99 @@
+== SET UP YOUR TESTING TOOLCHAIN
+
+Following these steps will get you set up for BDD in Rails 3.2.6, using ActiveRecord. These instructions are gleaned
+from training that provided by ThoughtBot. To understand why you would want to set up your environment this way,
+and to learn what to do with the tools once you have them, I recommend taking Test Driven Rails at ThoughtBot.
+
+
+== Environment
+
+        Ruby 1.9.3
+        Rails 3.2
+
+== Primary Tools
+
+        cucumber (integration)
+        rspec (unit)
+
+== Other
+
+high_voltage allows you to add static content routes without controllers.
+
+== Notes
+
+if cucumber gives you a javascript error add to your gemfile: 
+        gem 'therubyracer', require: 'v8'
+
+
+== STEP BY STEP STUFF
+
+SET UP
+1. delete public/index.html
+
+2. set up your gemfile:
+
+        group :development, :test do
+        	gem 'rspec-rails'
+        end
+
+        group :test do
+        	gem 'spork'
+        	gem 'cucumber-rails', require: false
+        	gem 'database_cleaner'
+        	#gem 'capybara'
+        	#gem 'shoulda-matchers'
+        	#gem 'bourne' #for spying
+        end
+
+        group :development do
+        	gem 'guard-spork'
+        end
+
+
+3. use your console:
+        bundle
+        guard init spork
+        rails g cucumber:install
+        rails g rspec:install
+
+4. make your life easier
+  * open features/support/env.rb -- delete all comments
+  * open spc/spec_helper.rb -- delete all comments
+
+5. go back to your console:
+        spork rspec --bootstrap
+        spork cucumber --bootstrap
+
+6. set up your spork
+  * open features/support/env.rb -- delete all comments and move all original lines to 'prefork'
+  * add to prefork: 
+        require 'capybara/rspec'
+
+  * open spec/spec_helper.rb -- kill comments and move all to prefork
+  * Line that starts "Dir[Rails.root.join...." moves to each_run
+
+  * open config/cucumber.yml -- line 4 ADD "--drb"  before "--strict"
+
+  * open /.rspec  and add "--drb" to the end of the first line.
+
+7. set up spying with mocha
+
+open spec/spec_helper, and add to the config section:
+        config.mock_with :mocha
+
+
+
+== You want to test your JavaScript?
+
+Use jasmine!
+
+Put this in your Gemfile:
+
+        group :test do
+         gem 'evergreen'
+        end
+
+And then on the command line: 
+        evergreen serve
+
+Now add @javascript notations to your Features and Scenarios where you'd like, and log in to evergreen to check your js tests.
