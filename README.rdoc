@@ -26,6 +26,8 @@ if cucumber gives you a javascript error add to your gemfile:
 
 
 == STEP BY STEP STUFF
+Set up your project:
+        rails g myapp --skip-test-unit
 
 SET UP
 1. delete public/index.html
@@ -56,22 +58,46 @@ SET UP
         rails g cucumber:install
         rails g rspec:install
 
-4. make your life easier
+4. Add to your Guardfile the following line in the guard 'spork' block:
+        watch('config/routes.rb')
+
+5. make your life easier
    *     open features/support/env.rb -- delete all comments
    *     open spc/spec_helper.rb -- delete all comments
 
-5. go back to your console:
+6. go back to your console:
    *     spork rspec --bootstrap
    *     spork cucumber --bootstrap
 
-6. set up your spork
+7. set up your spork
 
-   * open features/support/env.rb -- delete all comments and move all original lines to 'prefork'
-   * add to prefork: 
+   * open features/support/env.rb -- delete all comments and split your directives between prefork and each_run.
+     You essentially move everything to prefork, except the line that starts "Dir[Rails.root.join...." that moves to each_run.
+     Then add to prefork: 
         require 'capybara/rspec'
 
-   * open spec/spec_helper.rb -- kill comments and move all to prefork
-   * Line that starts "Dir[Rails.root.join...." moves to each_run
+     Here is the env.rb file:
+        require 'rubygems'
+        require 'spork'
+        
+        Spork.prefork do
+          ENV["RAILS_ENV"] ||= 'test'
+          require File.expand_path("../../config/environment", __FILE__)
+          require 'rspec/rails'
+          require 'rspec/autorun'
+          RSpec.configure do |config|
+            config.fixture_path = "#{::Rails.root}/spec/fixtures"
+            config.use_transactional_fixtures = true
+            config.infer_base_class_for_anonymous_controllers = false
+            config.order = "random"
+          end
+        end
+
+        Spork.each_run do
+          Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+        end
+   
+
 
    * open config/cucumber.yml -- line 4 ADD "--drb"  before "--strict"
 
@@ -79,7 +105,7 @@ SET UP
 
 7. set up spying with mocha
 
-   * open spec/spec_helper, and add to the config section:
+   * open spec/spec_helper, and add to the RSpec.configure block:
         config.mock_with :mocha
 
 
