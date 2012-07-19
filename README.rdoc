@@ -76,6 +76,14 @@ SET UP
    * open features/support/env.rb -- delete all comments and move all original lines to the prefork block.
      Then add to prefork: 
         require 'capybara/rspec'
+     You can remove this section of your env.rb file if you do not need persistence in testing:
+        begin
+          DatabaseCleaner.strategy = :transaction
+        rescue NameError
+          raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+        end
+
+        Cucumber::Rails::Database.javascript_strategy = :truncation
 
    * open spec/spec_helper.rb and split your directives between prefork and each_run.
      You essentially move everything to prefork, except the line that starts "Dir[Rails.root.join...." that moves to each_run.
