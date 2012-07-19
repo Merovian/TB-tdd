@@ -57,30 +57,29 @@ SET UP
         rails g rspec:install
 
 4. make your life easier
-
- * open features/support/env.rb -- delete all comments
- * open spc/spec_helper.rb -- delete all comments
+   *     open features/support/env.rb -- delete all comments
+   *     open spc/spec_helper.rb -- delete all comments
 
 5. go back to your console:
-        spork rspec --bootstrap
-        spork cucumber --bootstrap
+   *     spork rspec --bootstrap
+   *     spork cucumber --bootstrap
 
 6. set up your spork
 
- * open features/support/env.rb -- delete all comments and move all original lines to 'prefork'
- * add to prefork: 
+   * open features/support/env.rb -- delete all comments and move all original lines to 'prefork'
+   * add to prefork: 
         require 'capybara/rspec'
 
- * open spec/spec_helper.rb -- kill comments and move all to prefork
- * Line that starts "Dir[Rails.root.join...." moves to each_run
+   * open spec/spec_helper.rb -- kill comments and move all to prefork
+   * Line that starts "Dir[Rails.root.join...." moves to each_run
 
- * open config/cucumber.yml -- line 4 ADD "--drb"  before "--strict"
+   * open config/cucumber.yml -- line 4 ADD "--drb"  before "--strict"
 
- * open /.rspec  and add "--drb" to the end of the first line.
+   * open /.rspec  and add "--drb" to the end of the first line.
 
 7. set up spying with mocha
 
-open spec/spec_helper, and add to the config section:
+   * open spec/spec_helper, and add to the config section:
         config.mock_with :mocha
 
 
