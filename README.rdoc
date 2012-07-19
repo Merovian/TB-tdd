@@ -66,8 +66,10 @@ SET UP
    *     open spc/spec_helper.rb -- delete all comments
 
 6. go back to your console:
-   *     spork rspec --bootstrap
-   *     spork cucumber --bootstrap
+
+      spork rspec --bootstrap
+   
+      spork cucumber --bootstrap
 
 7. set up your spork
 
