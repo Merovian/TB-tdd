@@ -27,7 +27,7 @@ if cucumber gives you a javascript error add to your gemfile:
 
 == STEP BY STEP STUFF
 Set up your project:
-        rails g myapp --skip-test-unit
+        rails new myapp --skip-test-unit
 
 SET UP
 1. delete public/index.html
@@ -42,9 +42,9 @@ SET UP
         	gem 'spork'
         	gem 'cucumber-rails', require: false
         	gem 'database_cleaner'
-        	#gem 'capybara'
-        	#gem 'shoulda-matchers'
-        	#gem 'bourne' #for spying
+        	gem 'capybara'
+        	gem 'shoulda-matchers'
+        	gem 'bourne' #for spying
         end
 
         group :development do
